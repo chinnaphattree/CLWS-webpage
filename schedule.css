@@ -1,0 +1,204 @@
+/* ==========================================================
+   CLUWS ESPORTS — Race / Match Schedule page
+   Loads AFTER CLWS.css, so it shares the same palette & fonts
+   ========================================================== */
+
+.page-hero {
+    padding: 70px 0 56px;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, .97), rgba(0, 0, 0, .7)),
+        linear-gradient(130deg, #1c1810, #101114 65%, #1e1a12);
+    border-bottom: 1px solid var(--line);
+}
+
+.back-link {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 22px;
+    transition: color .25s, transform .25s;
+}
+
+.back-link:hover {
+    color: var(--gold-light);
+    transform: translateX(-4px);
+}
+
+.page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 14px 0;
+}
+
+.page-hero h1 span {
+    color: var(--gold);
+}
+
+.page-hero p {
+    color: var(--text);
+    max-width: 600px;
+}
+
+.schedule-section {
+    background: var(--dark);
+}
+
+.schedule-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.schedule-note {
+    margin-bottom: 18px;
+    padding: 14px 18px;
+    background: linear-gradient(110deg, var(--gold-tint-1), var(--gold-tint-2));
+    border: 1px solid var(--gold-border);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.schedule-note strong {
+    color: var(--gold);
+}
+
+/* ---------- TABLE ---------- */
+
+.table-wrap {
+    overflow-x: auto;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+}
+
+.schedule-table {
+    width: 100%;
+    min-width: 820px;
+    border-collapse: collapse;
+}
+
+.schedule-table th {
+    text-align: left;
+    padding: 15px 18px;
+    background: var(--gold-tint-1);
+    border-bottom: 1px solid var(--gold-border);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+.schedule-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.schedule-table tbody tr {
+    transition: background .2s;
+}
+
+.schedule-table tbody tr:hover td {
+    background: var(--panel-2);
+}
+
+.schedule-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.match-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--white);
+    white-space: nowrap;
+}
+
+.match-name .vs {
+    color: var(--gold);
+    padding: 0 6px;
+}
+
+.date-cell strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: .5px;
+}
+
+.date-cell small {
+    color: var(--gray);
+    font-size: 12px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border: 1px solid;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+}
+
+.badge-upcoming {
+    color: var(--gold);
+    border-color: var(--gold-border);
+}
+
+.badge-live {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #111;
+}
+
+.badge-done {
+    color: var(--gray);
+    border-color: var(--line);
+}
+
+.result {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.result.win {
+    color: var(--gold-light);
+}
+
+.result.loss,
+.result.pending {
+    color: var(--gray);
+}
+
+.no-results td {
+    text-align: center;
+    color: var(--gray);
+    padding: 32px;
+}
+
+@media (max-width: 700px) {
+    .schedule-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .page-hero {
+        padding: 50px 0 40px;
+    }
+}

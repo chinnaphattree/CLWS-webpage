@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CLUWS ESPORTS race and match schedule.">
+<title>RACE SCHEDULE | CLUWS ESPORTS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="CLWS.css">
+<link rel="stylesheet" href="schedule.css">
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="container">
+        <span>THAILAND ESPORTS ORGANIZATION</span>
+        <span>RACE SCHEDULE</span>
+    </div>
+</div>
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="CLWS.html" class="brand" aria-label="Back to CLUWS ESPORTS main site">
+                <div class="logo-box"><span>C</span></div>
+                <div class="brand-name">
+                    CLUWS <span>ESPORTS</span>
+                    <small>OFFICIAL ORGANIZATION</small>
+                </div>
+            </a>
+
+            <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="CLWS.html#home">HOME</a></li>
+                <li><a href="CLWS.html#organization">ORGANIZATION</a></li>
+                <li><a href="CLWS.html#office">OFFICE</a></li>
+                <li><a href="CLWS.html#delta">DELTA FORCE</a></li>
+                <li><a href="schedule.html" style="color:var(--gold)">RACE SCHEDULE</a></li>
+                <li><a href="CLWS.html#history">HISTORY</a></li>
+                <li><a href="CLWS.html#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+<section class="page-hero">
+    <div class="container">
+        <a href="CLWS.html" class="back-link">← BACK TO MAIN SITE</a>
+        <div class="eyebrow">OFFICIAL FIXTURES &amp; RESULTS</div>
+        <h1>RACE <span>SCHEDULE</span></h1>
+        <p>ตารางการแข่งขัน ผลการแข่งขัน และ Scrim ของ CLUWS ESPORTS</p>
+    </div>
+</section>
+
+<section class="schedule-section">
+    <div class="container">
+        <div class="section-heading">
+            <small>MATCH CENTER</small>
+            <h2>UPCOMING &amp; RESULTS</h2>
+            <p>อัปเดตตารางการแข่งขันล่าสุดของทุกทีม (เวลาประเทศไทย)</p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="schedule-stats">
+            <div class="stat"><strong id="statUpcoming">0</strong><small>UPCOMING</small></div>
+            <div class="stat"><strong id="statLive">0</strong><small>LIVE NOW</small></div>
+            <div class="stat"><strong id="statDone">0</strong><small>COMPLETED</small></div>
+        </div>
+
+        <div class="roster-tools" role="group" aria-label="Filter matches">
+            <button class="active" data-filter="all" aria-pressed="true">ALL MATCHES</button>
+            <button data-filter="upcoming" aria-pressed="false">UPCOMING</button>
+            <button data-filter="live" aria-pressed="false">LIVE</button>
+            <button data-filter="done" aria-pressed="false">COMPLETED</button>
+        </div>
+
+        <div class="table-wrap">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>DATE</th>
+                        <th>TIME (ICT)</th>
+                        <th>MATCH</th>
+                        <th>TYPE</th>
+                        <th>STATUS</th>
+                        <th>RESULT</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody">
+                    <tr class="no-results" id="noResults" hidden>
+                        <td colspan="6" id="noResultsText"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="recruitment">
+    <div class="container">
+        <div class="eyebrow">WANT A SCRIM OR TRYOUT?</div>
+        <h2>CONTACT THE OFFICE</h2>
+        <p>ต้องการนัดซ้อมหรือเข้าร่วมการแข่งขัน ติดต่อสำนักงานผ่านช่องทางอย่างเป็นทางการ</p>
+        <a href="CLWS.html#contact" class="btn">CONTACT OFFICE</a>
+        <a href="CLWS.html" class="btn btn-outline">BACK TO MAIN SITE</a>
+    </div>
+</section>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div><div class="footer-brand">CLUWS <span>ESPORTS</span></div><p>OFFICIAL ESPORTS ORGANIZATION</p></div>
+        <div><p>THAILAND • DELTA FORCE MOBILE</p><p>DISCIPLINE • TEAMWORK • DEVELOPMENT</p></div>
+        <div><p>© <span id="year"></span> CLUWS ESPORTS</p><p>ALL RIGHTS RESERVED.</p></div>
+    </div>
+</footer>
+
+<script src="schedule-data.js"></script>
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", () => {
+    const open = navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open);
+});
+
+const body = document.getElementById("scheduleBody");
+const noResults = document.getElementById("noResults");
+const noResultsText = document.getElementById("noResultsText");
+
+const STATUS_LABEL = { upcoming: "UPCOMING", live: "LIVE", done: "COMPLETED" };
+const STATUS_CLASS = { upcoming: "badge-upcoming", live: "badge-live", done: "badge-done" };
+const ORDER = { live: 0, upcoming: 1, done: 2 };
+
+function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+}
+
+function toDate(m) {
+    const [y, mo, d] = String(m.date).split("-").map(Number);
+    const [h, mi] = String(m.time || "00:00").split(":").map(Number);
+    return new Date(y, mo - 1, d, h || 0, mi || 0);
+}
+
+const matches = SCHEDULE.map(m => {
+    const finished = m.result && String(m.result).trim() !== "";
+    const status = finished ? "done" : (m.live ? "live" : "upcoming");
+    return { ...m, status, when: toDate(m) };
+}).sort((a, b) => {
+    if (ORDER[a.status] !== ORDER[b.status]) return ORDER[a.status] - ORDER[b.status];
+    return a.status === "done" ? b.when - a.when : a.when - b.when;
+});
+
+matches.forEach(m => {
+    const tr = el("tr");
+    tr.dataset.status = m.status;
+
+    const dateTd = el("td", "date-cell");
+    const day = m.when.getDate();
+    const mon = m.when.toLocaleDateString("en-GB", { month: "short" }).toUpperCase();
+    const wk = m.when.toLocaleDateString("en-GB", { weekday: "short" }).toUpperCase();
+    dateTd.append(el("strong", "", `${day} ${mon} ${m.when.getFullYear()}`), el("small", "", wk));
+
+    const timeTd = el("td", "", m.time || "TBA");
+
+    const matchTd = el("td", "match-name");
+    matchTd.append(
+        document.createTextNode(m.teamA || "TBD"),
+        el("span", "vs", "VS"),
+        document.createTextNode(m.teamB || "TBD")
+    );
+
+    const typeTd = el("td", "", m.type || "—");
+
+    const statusTd = el("td");
+    statusTd.append(el("span", `badge ${STATUS_CLASS[m.status]}`, STATUS_LABEL[m.status]));
+
+    let resultText = "UPCOMING";
+    let resultClass = "result pending";
+    if (m.status === "live") resultText = "LIVE";
+    if (m.status === "done") {
+        resultText = String(m.result).trim();
+        resultClass = /^win/i.test(resultText) ? "result win" : "result loss";
+    }
+    const resultTd = el("td", resultClass, resultText);
+
+    tr.append(dateTd, timeTd, matchTd, typeTd, statusTd, resultTd);
+    body.insertBefore(tr, noResults);
+});
+
+document.getElementById("statUpcoming").textContent = matches.filter(m => m.status === "upcoming").length;
+document.getElementById("statLive").textContent = matches.filter(m => m.status === "live").length;
+document.getElementById("statDone").textContent = matches.filter(m => m.status === "done").length;
+
+const filterButtons = document.querySelectorAll(".roster-tools button");
+function applyFilter(filter) {
+    let visible = 0;
+    body.querySelectorAll("tr[data-status]").forEach(row => {
+        const show = filter === "all" || row.dataset.status === filter;
+        row.hidden = !show;
+        if (show) visible++;
+    });
+    noResultsText.textContent = matches.length === 0 ? "ยังไม่มีตารางการแข่งขัน — โปรดติดตามประกาศเร็ว ๆ นี้" : "ไม่พบรายการแข่งขันในหมวดนี้";
+    noResults.hidden = visible !== 0;
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-pressed", "false"); });
+        button.classList.add("active");
+        button.setAttribute("aria-pressed", "true");
+        applyFilter(button.dataset.filter);
+    });
+});
+
+applyFilter("all");
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

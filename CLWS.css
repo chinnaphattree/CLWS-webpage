@@ -1,0 +1,891 @@
+/* ==========================================================
+   CLUWS ESPORTS — Official Organization Website
+   Palette: Black / Charcoal / Gold (single consistent group)
+   Fonts:   Rajdhani (display) + Inter / Noto Sans Thai (body)
+   ========================================================== */
+
+:root {
+    --black: #08090b;
+    --dark: #0d0e11;
+    --dark-2: #101114;
+    --panel: #16181d;
+    --panel-2: #1c1e24;
+
+    --gold: #c9a45e;
+    --gold-light: #e8cf91;
+    --gold-tint-1: #1f1a11;   /* warm dark used for all feature banners */
+    --gold-tint-2: #15161a;
+    --gold-border: #4f4228;
+
+    --white: #f5f5f5;
+    --text: #c4c7ce;
+    --gray: #a0a4ad;
+    --line: #2c2e35;
+
+    --font-display: "Rajdhani", "Noto Sans Thai", sans-serif;
+    --font-body: "Inter", "Noto Sans Thai", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+    background: #050505;
+    border-bottom: 1px solid var(--line);
+    padding: 8px 0;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+}
+
+.topbar .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* ---------- NAVIGATION ---------- */
+
+header {
+    background: rgba(10, 10, 12, .97);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+}
+
+nav {
+    min-height: 82px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-box {
+    width: 46px;
+    height: 46px;
+    border: 2px solid var(--gold);
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+}
+
+.logo-box span {
+    transform: rotate(-45deg);
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+.brand-name span {
+    color: var(--gold);
+}
+
+.brand-name small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gray);
+    letter-spacing: 3px;
+    margin-top: 3px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 26px;
+}
+
+.nav-links a {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: color .25s, border-color .25s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.menu {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 9px 16px;
+    cursor: pointer;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+    min-height: 570px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, .97), rgba(0, 0, 0, .65)),
+        linear-gradient(130deg, #1c1810, #101114 65%, #1e1a12);
+}
+
+.hero::before {
+    content: "CLUWS";
+    position: absolute;
+    right: -30px;
+    top: 30px;
+    font-family: var(--font-display);
+    font-size: clamp(120px, 24vw, 300px);
+    font-weight: 700;
+    color: rgba(255, 255, 255, .025);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    right: 10%;
+    border: 1px solid rgba(201, 164, 94, .22);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 90px 0;
+}
+
+.eyebrow {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 5px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 10vw, 120px);
+    line-height: .95;
+    margin: 20px 0;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    color: var(--text);
+    max-width: 580px;
+    font-size: 16px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 28px;
+    background: var(--gold);
+    color: #111;
+    border: 1px solid var(--gold);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: background .25s, transform .25s, color .25s;
+}
+
+.btn:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--gold);
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: #111;
+}
+
+/* ---------- COMMON ---------- */
+
+section {
+    padding: 85px 0;
+}
+
+.section-heading {
+    margin-bottom: 36px;
+}
+
+.section-heading small {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.section-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.6vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
+.section-heading p {
+    color: var(--gray);
+    font-size: 15px;
+    margin-top: 6px;
+}
+
+.gold-line {
+    width: 65px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 16px;
+}
+
+/* ---------- ORGANIZATION ---------- */
+
+.organization {
+    background: var(--dark);
+}
+
+.org-grid {
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 22px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 30px;
+}
+
+.card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.card p {
+    color: var(--text);
+    font-size: 15px;
+}
+
+.card p + p {
+    margin-top: 16px;
+}
+
+.org-stat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.stat {
+    background: var(--dark);
+    border: 1px solid var(--line);
+    padding: 20px;
+}
+
+.stat strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--gold);
+}
+
+.stat small {
+    color: var(--gray);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+/* ---------- FEATURE BANNERS (shared style: office / delta / achievements / recruitment) ---------- */
+
+.office-banner,
+.delta-banner,
+.achievement-box {
+    background: linear-gradient(110deg, var(--gold-tint-1), var(--gold-tint-2));
+    border: 1px solid var(--gold-border);
+}
+
+/* ---------- OFFICE ---------- */
+
+.office {
+    background: var(--dark-2);
+}
+
+.office-banner {
+    padding: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.office-banner h3 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+}
+
+.office-banner p {
+    color: var(--text);
+    font-size: 15px;
+    max-width: 650px;
+}
+
+.office-badge {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+
+.office-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.office-card {
+    background: var(--panel);
+    padding: 26px;
+    border: 1px solid var(--line);
+    border-bottom: 2px solid var(--gold);
+    transition: transform .25s, border-color .25s;
+}
+
+.office-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+}
+
+.office-card .number {
+    font-family: var(--font-display);
+    font-size: 34px;
+    line-height: 1;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.office-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin: 10px 0 6px;
+}
+
+.office-card p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* ---------- DELTA FORCE ---------- */
+
+.delta {
+    background: linear-gradient(180deg, #0b0c0e, #0f1013);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.delta-banner {
+    padding: 38px;
+    margin-bottom: 56px;
+}
+
+.delta-banner small {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.delta-banner h3 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: 1px;
+    margin: 8px 0 10px;
+}
+
+.delta-banner h3 span {
+    color: var(--gold);
+}
+
+.delta-banner p {
+    color: var(--text);
+    font-size: 15px;
+    max-width: 700px;
+}
+
+/* ---------- ROSTER ---------- */
+
+.roster-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 26px;
+}
+
+.roster-tools button {
+    background: var(--panel-2);
+    border: 1px solid #3a3c44;
+    padding: 10px 20px;
+    color: var(--white);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    transition: background .25s, color .25s, border-color .25s;
+}
+
+.roster-tools button.active,
+.roster-tools button:hover {
+    background: var(--gold);
+    color: #111;
+    border-color: var(--gold);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.team-card {
+    padding: 26px;
+    background: linear-gradient(135deg, var(--panel), var(--dark-2));
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+}
+
+.team-card h3 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+}
+
+.team-card h3 span {
+    color: var(--gold);
+}
+
+.team-card small {
+    color: var(--gray);
+    letter-spacing: 2.5px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.player-list {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.player-list li {
+    background: var(--panel-2);
+    border-left: 2px solid var(--gold);
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.team-count {
+    margin-top: 16px;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* ---------- COMPETITION ---------- */
+
+.competition {
+    background: var(--dark);
+}
+
+.competition-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.comp-card {
+    padding: 28px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    transition: border-color .25s;
+}
+
+.comp-card:hover {
+    border-color: var(--gold-border);
+}
+
+.comp-card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.comp-card p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+/* ---------- HISTORY ---------- */
+
+.history {
+    background: var(--dark-2);
+}
+
+.timeline {
+    border-left: 2px solid var(--gold);
+    margin-left: 10px;
+    padding-left: 28px;
+    display: grid;
+    gap: 28px;
+}
+
+.timeline-item {
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -36px;
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    transform: rotate(45deg);
+}
+
+.timeline-item h3 {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.timeline-item p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ---------- ACHIEVEMENTS ---------- */
+
+.achievements {
+    background: #0a0a0c;
+}
+
+.achievement-box {
+    padding: 36px;
+}
+
+.achievement-box h3 {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 30px;
+    letter-spacing: 1.5px;
+}
+
+.achievement-box p {
+    color: var(--text);
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/* ---------- RECRUITMENT ---------- */
+
+.recruitment {
+    background: linear-gradient(110deg, var(--gold-tint-1), var(--dark-2));
+    border-top: 1px solid var(--gold-border);
+    border-bottom: 1px solid var(--gold-border);
+    text-align: center;
+}
+
+.recruitment h2 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 54px);
+    letter-spacing: 1.5px;
+    line-height: 1.1;
+    margin-top: 6px;
+}
+
+.recruitment p {
+    max-width: 650px;
+    margin: 16px auto 28px;
+    color: var(--text);
+    font-size: 15px;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact {
+    background: var(--dark-2);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.contact-card {
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+}
+
+.contact-card small {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.contact-card strong {
+    display: block;
+    margin-top: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.contact-link {
+    display: block;
+    cursor: pointer;
+    transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+}
+
+.contact-link:hover {
+    border-color: var(--gold);
+    background: var(--panel-2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .3);
+}
+
+.contact-link:hover strong {
+    color: var(--gold-light);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    background: #050506;
+    padding: 38px 0;
+    border-top: 1px solid var(--gold-border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.footer-brand span {
+    color: var(--gold);
+}
+
+footer p {
+    font-size: 12px;
+    letter-spacing: .5px;
+    color: #8a8d95;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 960px) {
+    .menu {
+        display: block;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        min-height: 72px;
+        padding: 12px 0;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 6px 0 12px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        font-size: 17px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .office-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .hero {
+        min-height: 520px;
+    }
+
+    .org-grid,
+    .office-grid,
+    .team-grid,
+    .competition-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .office-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topbar .container {
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+
+@media (max-width: 390px) {
+    .player-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
