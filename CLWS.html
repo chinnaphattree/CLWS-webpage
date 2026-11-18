@@ -11,6 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%2308090b%27/%3E%3Cpath d=%27M32 6l26 26-26 26L6 32z%27 fill=%27none%27 stroke=%27%23c9a45e%27 stroke-width=%275%27/%3E%3Ctext x=%2732%27 y=%2741%27 font-size=%2726%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27%23c9a45e%27 font-family=%27sans-serif%27%3EC%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="CLUWS ESPORTS | Delta Force Mobile — Thailand">
+<meta property="og:description" content="5 squads, 20 players. Match schedule, roster and tryouts.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#08090b">
 <link rel="stylesheet" href="CLWS.css">
 </head>
 
@@ -19,7 +24,7 @@
 <div class="topbar">
     <div class="container">
         <span>THAILAND ESPORTS ORGANIZATION</span>
-        <span>EST. CLUWS ESPORTS</span>
+        <span>DELTA FORCE MOBILE</span>
     </div>
 </div>
 
@@ -40,10 +45,11 @@
             <ul class="nav-links" id="navLinks">
             <li><a href="#home">HOME</a></li>
             <li><a href="#organization">ORGANIZATION</a></li>
-            <li><a href="#office">OFFICE</a></li>
             <li><a href="#delta">DELTA FORCE</a></li>
+            <li><a href="#roster">PLAYERS</a></li>
             <li><a href="schedule.html">RACE SCHEDULE</a></li> <!-- Added Schedule Button -->
             <li><a href="#history">HISTORY</a></li>
+            <li><a href="#join" class="nav-cta">JOIN US</a></li>
             <li><a href="#contact">CONTACT</a></li>
             </ul>
 
@@ -72,7 +78,15 @@
 
         <div class="hero-buttons">
             <a href="#organization" class="btn">OUR ORGANIZATION</a>
-            <a href="#delta" class="btn btn-outline">DELTA FORCE DIVISION</a>
+            <a href="#roster" class="btn btn-outline">MEET THE ROSTER</a>
+        </div>
+
+        <div class="next-match" id="nextMatch" aria-live="polite">
+            <small class="nm-label">NEXT MATCH</small>
+            <div class="nm-teams">…</div>
+            <div class="nm-meta"></div>
+            <div class="nm-count"></div>
+            <a href="schedule.html" class="nm-link">FULL SCHEDULE →</a>
         </div>
 
     </div>
@@ -92,7 +106,7 @@
 
         <div class="org-grid">
 
-            <div class="card">
+            <div class="card reveal">
                 <h3>WHO WE ARE</h3>
                 <p>
                     CLUWS ESPORTS เป็นองค์กรอีสปอร์ตที่มุ่งเน้นการสร้างและพัฒนาทีมการแข่งขัน
@@ -106,16 +120,16 @@
                 </p>
             </div>
 
-            <div class="card">
+            <div class="card reveal">
                 <h3>ORGANIZATION PROFILE</h3>
 
                 <div class="org-stat">
                     <div class="stat">
-                        <strong>05</strong>
+                        <strong data-count="5" data-pad="2">05</strong>
                         <small>COMPETITIVE SQUADS</small>
                     </div>
                     <div class="stat">
-                        <strong>20</strong>
+                        <strong data-count="20" data-pad="2">20</strong>
                         <small>ROSTER PLAYERS</small>
                     </div>
                     <div class="stat">
@@ -127,72 +141,6 @@
                         <small>MAIN GAME</small>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- OFFICE -->
-
-<section class="office" id="office">
-    <div class="container">
-
-        <div class="section-heading">
-            <small>ORGANIZATION DEPARTMENT</small>
-            <h2>OFFICE DIVISION</h2>
-            <p>ฝ่ายสำนักงานและการบริหารองค์กร</p>
-            <div class="gold-line"></div>
-        </div>
-
-        <div class="office-banner">
-            <div>
-                <h3>CLUWS ESPORTS OFFICE</h3>
-                <p>
-                    ศูนย์กลางการประสานงานและบริหารจัดการองค์กร
-                    ดูแลภาพรวมของทีม การติดต่อทางธุรกิจ การประชาสัมพันธ์
-                    และการพัฒนาแบรนด์
-                </p>
-            </div>
-            <strong class="office-badge">OFFICIAL</strong>
-        </div>
-
-        <div class="office-grid">
-
-            <div class="office-card">
-                <div class="number">01</div>
-                <h3>MANAGEMENT</h3>
-                <p>การบริหารจัดการองค์กร วางแผนทิศทางและดูแลการดำเนินงาน</p>
-            </div>
-
-            <div class="office-card">
-                <div class="number">02</div>
-                <h3>PUBLIC RELATIONS</h3>
-                <p>ประชาสัมพันธ์ข่าวสาร ประกาศทีม และกิจกรรมต่าง ๆ</p>
-            </div>
-
-            <div class="office-card">
-                <div class="number">03</div>
-                <h3>BUSINESS &amp; PARTNERSHIP</h3>
-                <p>ประสานงานพันธมิตร การร่วมมือ และการติดต่อทางธุรกิจ</p>
-            </div>
-
-            <div class="office-card">
-                <div class="number">04</div>
-                <h3>MEDIA &amp; DESIGN</h3>
-                <p>ดูแลภาพลักษณ์องค์กร งานกราฟิก โลโก้ และสื่อประชาสัมพันธ์</p>
-            </div>
-
-            <div class="office-card">
-                <div class="number">05</div>
-                <h3>PLAYER MANAGEMENT</h3>
-                <p>ดูแลรายชื่อนักแข่ง การจัดทีม และการประสานงานผู้เล่น</p>
-            </div>
-
-            <div class="office-card">
-                <div class="number">06</div>
-                <h3>COMPETITIVE OPERATIONS</h3>
-                <p>ดูแลตารางการแข่งขัน การฝึกซ้อม และการประสานงาน Scrim</p>
             </div>
 
         </div>
@@ -211,7 +159,7 @@
             <div class="gold-line"></div>
         </div>
 
-        <div class="delta-banner">
+        <div class="delta-banner reveal">
             <small>MAIN COMPETITIVE GAME</small>
             <h3>DELTA FORCE <span>MOBILE</span></h3>
             <p>
@@ -229,6 +177,7 @@
             <div class="gold-line"></div>
         </div>
 
+        <div id="roster"></div>
         <div class="roster-tools" role="group" aria-label="Filter teams">
             <button class="active" data-filter="all" aria-pressed="true">ALL TEAMS</button>
             <button data-filter="A" aria-pressed="false">TEAM A</button>
@@ -238,66 +187,186 @@
             <button data-filter="E" aria-pressed="false">TEAM E</button>
         </div>
 
-        <div class="team-grid">
+        <div class="team-grid player-grid">
 
-            <div class="team-card" data-team="A">
-                <small>COMPETITIVE SQUAD</small>
-                <h3>TEAM <span>A</span></h3>
-                <ul class="player-list">
-                    <li>CLWS丶AeKKKK</li>
-                    <li>CLWS丶ATOMIclysb</li>
-                    <li>CLWS丶4.1MR (As)</li>
-                    <li>CLWS丶Mixrakfern</li>
-                </ul>
-                <div class="team-count">04 PLAYERS</div>
+            <div class="player-card" data-team="A">
+                <div class="pc-art"><span>AEK</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶AeKKKK</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM A</span>
+                </div>
             </div>
 
-            <div class="team-card" data-team="B">
-                <small>COMPETITIVE SQUAD</small>
-                <h3>TEAM <span>B</span></h3>
-                <ul class="player-list">
-                    <li>CLWS丶XLL</li>
-                    <li>CLWS丶7fps</li>
-                    <li>CLWS丶Wave</li>
-                    <li>CLWS丶shak</li>
-                </ul>
-                <div class="team-count">04 PLAYERS</div>
+            <div class="player-card" data-team="A">
+                <div class="pc-art"><span>ATM</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶ATOMIclysb</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM A</span>
+                </div>
             </div>
 
-            <div class="team-card" data-team="C">
-                <small>COMPETITIVE SQUAD</small>
-                <h3>TEAM <span>C</span></h3>
-                <ul class="player-list">
-                    <li>CLWS丶KZX89</li>
-                    <li>CLWS丶IRENE</li>
-                    <li>CLWS丶Voซะนะ</li>
-                    <li>CLWS丶BAN</li>
-                </ul>
-                <div class="team-count">04 PLAYERS</div>
+            <div class="player-card" data-team="A">
+                <div class="pc-art"><span>4MR</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶4.1MR (As)</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM A</span>
+                </div>
             </div>
 
-            <div class="team-card" data-team="D">
-                <small>COMPETITIVE SQUAD</small>
-                <h3>TEAM <span>D</span></h3>
-                <ul class="player-list">
-                    <li>CLWS丶KNG89</li>
-                    <li>CLWS丶BetBu99</li>
-                    <li>CLWS丶DmV01d</li>
-                    <li>CLWS丶KAi</li>
-                </ul>
-                <div class="team-count">04 PLAYERS</div>
+            <div class="player-card" data-team="A">
+                <div class="pc-art"><span>MIX</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶Mixrakfern</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM A</span>
+                </div>
             </div>
 
-            <div class="team-card" data-team="E">
-                <small>COMPETITIVE SQUAD</small>
-                <h3>TEAM <span>E</span></h3>
-                <ul class="player-list">
-                    <li>CLWS丶CYRENE</li>
-                    <li>CLWS丶ThE_Nq</li>
-                    <li>CLWS丶MaxWalker</li>
-                    <li>CLWS丶NoT</li>
-                </ul>
-                <div class="team-count">04 PLAYERS</div>
+            <div class="player-card" data-team="B">
+                <div class="pc-art"><span>XLL</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶XLL</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM B</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="B">
+                <div class="pc-art"><span>7FP</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶7fps</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM B</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="B">
+                <div class="pc-art"><span>WAV</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶Wave</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM B</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="B">
+                <div class="pc-art"><span>SHK</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶shak</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM B</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="C">
+                <div class="pc-art"><span>KZX</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶KZX89</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM C</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="C">
+                <div class="pc-art"><span>IRN</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶IRENE</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM C</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="C">
+                <div class="pc-art"><span>VO</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶Voซะนะ</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM C</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="C">
+                <div class="pc-art"><span>BAN</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶BAN</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM C</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="D">
+                <div class="pc-art"><span>KNG</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶KNG89</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM D</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="D">
+                <div class="pc-art"><span>BET</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶BetBu99</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM D</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="D">
+                <div class="pc-art"><span>DMV</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶DmV01d</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM D</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="D">
+                <div class="pc-art"><span>KAI</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶KAi</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM D</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="E">
+                <div class="pc-art"><span>CYR</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶CYRENE</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM E</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="E">
+                <div class="pc-art"><span>THE</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶ThE_Nq</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM E</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="E">
+                <div class="pc-art"><span>MAX</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶MaxWalker</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM E</span>
+                </div>
+            </div>
+
+            <div class="player-card" data-team="E">
+                <div class="pc-art"><span>NOT</span></div>
+                <div class="pc-info">
+                    <h4>CLWS丶NoT</h4>
+                    <p>CLUWS ESPORTS</p>
+                    <span class="pc-tag">TEAM E</span>
+                </div>
             </div>
 
         </div>
@@ -319,19 +388,85 @@
 
         <div class="competition-grid">
 
-            <div class="comp-card">
+            <div class="comp-card reveal">
                 <h3>SCRIMMAGE</h3>
                 <p>ฝึกซ้อมกับทีมอื่น เพื่อพัฒนาระบบการเล่นและประสานงานภายในทีม</p>
             </div>
 
-            <div class="comp-card">
+            <div class="comp-card reveal">
                 <h3>TOURNAMENT</h3>
                 <p>เตรียมความพร้อมสำหรับการแข่งขันและรายการอีสปอร์ต</p>
             </div>
 
-            <div class="comp-card">
+            <div class="comp-card reveal">
                 <h3>INTERNATIONAL</h3>
                 <p>สร้างประสบการณ์การแข่งขันและประสานงานกับทีมต่างประเทศ</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- OFFICE -->
+
+<section class="office" id="office">
+    <div class="container">
+
+        <div class="section-heading">
+            <small>ORGANIZATION DEPARTMENT</small>
+            <h2>OFFICE DIVISION</h2>
+            <p>ฝ่ายสำนักงานและการบริหารองค์กร</p>
+            <div class="gold-line"></div>
+        </div>
+
+        <div class="office-banner reveal">
+            <div>
+                <h3>CLUWS ESPORTS OFFICE</h3>
+                <p>
+                    ศูนย์กลางการประสานงานและบริหารจัดการองค์กร
+                    ดูแลภาพรวมของทีม การติดต่อทางธุรกิจ การประชาสัมพันธ์
+                    และการพัฒนาแบรนด์
+                </p>
+            </div>
+            <strong class="office-badge">OFFICIAL</strong>
+        </div>
+
+        <div class="office-grid">
+
+            <div class="office-card reveal">
+                <div class="number">01</div>
+                <h3>MANAGEMENT</h3>
+                <p>การบริหารจัดการองค์กร วางแผนทิศทางและดูแลการดำเนินงาน</p>
+            </div>
+
+            <div class="office-card reveal">
+                <div class="number">02</div>
+                <h3>PUBLIC RELATIONS</h3>
+                <p>ประชาสัมพันธ์ข่าวสาร ประกาศทีม และกิจกรรมต่าง ๆ</p>
+            </div>
+
+            <div class="office-card reveal">
+                <div class="number">03</div>
+                <h3>BUSINESS &amp; PARTNERSHIP</h3>
+                <p>ประสานงานพันธมิตร การร่วมมือ และการติดต่อทางธุรกิจ</p>
+            </div>
+
+            <div class="office-card reveal">
+                <div class="number">04</div>
+                <h3>MEDIA &amp; DESIGN</h3>
+                <p>ดูแลภาพลักษณ์องค์กร งานกราฟิก โลโก้ และสื่อประชาสัมพันธ์</p>
+            </div>
+
+            <div class="office-card reveal">
+                <div class="number">05</div>
+                <h3>PLAYER MANAGEMENT</h3>
+                <p>ดูแลรายชื่อนักแข่ง การจัดทีม และการประสานงานผู้เล่น</p>
+            </div>
+
+            <div class="office-card reveal">
+                <div class="number">06</div>
+                <h3>COMPETITIVE OPERATIONS</h3>
+                <p>ดูแลตารางการแข่งขัน การฝึกซ้อม และการประสานงาน Scrim</p>
             </div>
 
         </div>
@@ -352,54 +487,27 @@
 
         <div class="timeline">
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <h3>THE ROOTS — ROS &amp; BLOODY DEVILS</h3>
                 <p>จุดเริ่มต้นของเรื่องราวมีความเกี่ยวข้องกับกลุ่มผู้เล่น ROS และ BLOODY DEVILS (BD)</p>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <h3>THE MERGER — CLWS</h3>
                 <p>การรวมตัวของกลุ่มผู้เล่นและทีมที่เกี่ยวข้อง นำไปสู่การพัฒนาโปรเจกต์ CLWS</p>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <h3>THE DEVELOPMENT</h3>
                 <p>พัฒนาระบบทีม การจัดการแข่งขัน และการสร้างแบรนด์อีสปอร์ต</p>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <h3>THE NEXT CHAPTER — CLUWS</h3>
                 <p>เดินหน้าพัฒนาองค์กรและฝ่ายการแข่งขัน สู่เป้าหมายในระดับสากล</p>
             </div>
 
         </div>
-    </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-
-<section class="achievements" id="achievements">
-    <div class="container">
-
-        <div class="section-heading">
-            <small>OUR RECORD</small>
-            <h2>ACHIEVEMENTS</h2>
-            <p>ผลงานและความสำเร็จขององค์กร</p>
-            <div class="gold-line"></div>
-        </div>
-
-        <div class="achievement-box">
-            <h3>BUILDING OUR LEGACY</h3>
-            <p>
-                ทุกการแข่งขันคือประสบการณ์ ทุกความพยายามคือการพัฒนา
-                และทุกก้าวคือส่วนหนึ่งของเส้นทาง CLUWS ESPORTS
-            </p>
-            <p>
-                พื้นที่นี้สำหรับเพิ่มรายการแข่งขัน อันดับ
-                และรางวัลที่ทีมได้รับอย่างเป็นทางการ
-            </p>
-        </div>
-
     </div>
 </section>
 
@@ -416,7 +524,13 @@
             ติดตามข่าวสารการรับสมัครและกิจกรรมของทีมผ่านช่องทางอย่างเป็นทางการ
         </p>
 
-        <a href="#contact" class="btn">CONTACT OFFICE</a>
+        <ol class="steps">
+            <li><b>1</b><span>Join our Discord</span></li>
+            <li><b>2</b><span>Ask in the General room for tryouts</span></li>
+            <li><b>3</b><span>Play a tryout / scrim with the squad</span></li>
+        </ol>
+        <a href="https://discord.gg/5AxZJtAp4" target="_blank" rel="noopener noreferrer" class="btn">JOIN DISCORD</a>
+        <a href="#contact" class="btn btn-outline">ALL CONTACTS</a>
 
     </div>
 </section>
@@ -435,22 +549,22 @@
 
         <div class="contact-grid">
 
-            <a class="contact-card contact-link" href="https://www.tiktok.com/@clws02" target="_blank" rel="noopener noreferrer" aria-label="Visit CLWS E-SPORTS on TikTok">
+            <a class="contact-card reveal contact-link" href="https://www.tiktok.com/@clws02" target="_blank" rel="noopener noreferrer" aria-label="Visit CLWS E-SPORTS on TikTok">
                 <small>OFFICIAL TIKTOK</small>
                 <strong>CLWS E-SPORTS</strong>
             </a>
 
-            <a class="contact-card contact-link" href="https://www.instagram.com/clws._.official" target="_blank" rel="noopener noreferrer" aria-label="Visit CLWS Official on Instagram">
+            <a class="contact-card reveal contact-link" href="https://www.instagram.com/clws._.official" target="_blank" rel="noopener noreferrer" aria-label="Visit CLWS Official on Instagram">
                 <small>OFFICIAL INSTAGRAM</small>
                 <strong>CLWS Official</strong>
             </a>
 
-            <a class="contact-card contact-link" href="https://discord.gg/5AxZJtAp4" target="_blank" rel="noopener noreferrer" aria-label="Join the CLUWS ESPORTS Discord for tests and scrims">
+            <a class="contact-card reveal contact-link" href="https://discord.gg/5AxZJtAp4" target="_blank" rel="noopener noreferrer" aria-label="Join the CLUWS ESPORTS Discord for tests and scrims">
                 <small>OFFICIAL DISCORD</small>
                 <strong>Ask in the General room for tryouts or Scrim rooms</strong>
             </a>
 
-            <div class="contact-card">
+            <div class="contact-card reveal">
                 <small>ORGANIZATION</small>
                 <strong>CLUWS ESPORTS • THAILAND</strong>
             </div>
@@ -484,48 +598,18 @@
     </div>
 </footer>
 
+<script src="schedule-data.js"></script>
+<script src="site.js"></script>
 <script>
-// MOBILE NAVIGATION
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.addEventListener("click", () => {
-    const open = navLinks.classList.toggle("open");
-    menuBtn.setAttribute("aria-expanded", open);
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-    });
-});
-
 // ROSTER FILTER
-const filterButtons = document.querySelectorAll(".roster-tools button");
-const teamCards = document.querySelectorAll(".team-card");
-
-filterButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        filterButtons.forEach(item => {
-            item.classList.remove("active");
-            item.setAttribute("aria-pressed", "false");
-        });
-
-        button.classList.add("active");
-        button.setAttribute("aria-pressed", "true");
-
-        const filter = button.dataset.filter;
-
-        teamCards.forEach(card => {
-            card.style.display =
-                filter === "all" || card.dataset.team === filter ? "block" : "none";
-        });
-    });
-});
-
-// FOOTER YEAR
-document.getElementById("year").textContent = new Date().getFullYear();
+const fb=document.querySelectorAll(".roster-tools button"),tc=document.querySelectorAll(".player-card");
+fb.forEach(b=>b.addEventListener("click",()=>{fb.forEach(i=>{i.classList.remove("active");i.setAttribute("aria-pressed","false")});
+b.classList.add("active");b.setAttribute("aria-pressed","true");
+tc.forEach(c=>c.hidden=!(b.dataset.filter==="all"||c.dataset.team===b.dataset.filter));}));
+</script>
+<script>
+// safety net: if the reveal animation script fails, never leave sections invisible
+window.addEventListener("load",()=>setTimeout(()=>document.querySelectorAll(".reveal:not(.in)").forEach(e=>e.classList.add("in")),1500));
 </script>
 
 </body>

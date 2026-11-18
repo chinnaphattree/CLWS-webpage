@@ -889,3 +889,84 @@ footer p {
         transition: none !important;
     }
 }
+
+/* ==========================================================
+   v2 ADDITIONS
+   ========================================================== */
+:root { --red: #e5484d; --green: #3ecf8e; }
+
+/* hero next-match card */
+.hero-content { display: grid; gap: 0; }
+.next-match { margin-top: 40px; max-width: 520px; padding: 20px 24px; background: rgba(22,24,29,.85);
+    border: 1px solid var(--gold-border); border-left: 3px solid var(--gold); backdrop-filter: blur(6px); }
+.next-match.is-live { border-left-color: var(--red); }
+.nm-label { font-family: var(--font-display); font-weight: 700; letter-spacing: 3px; font-size: 13px; color: var(--gold); }
+.is-live .nm-label { color: var(--red); animation: pulse 1.2s infinite; }
+.nm-teams { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1.2; margin: 4px 0; }
+.nm-meta { color: var(--gray); font-size: 14px; }
+.nm-count { font-family: var(--font-display); font-size: 34px; font-weight: 700; color: var(--gold-light); letter-spacing: 1px; margin-top: 6px; }
+.nm-link { display: inline-block; margin-top: 8px; font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; font-size: 14px; color: var(--gold); }
+.nm-link:hover { color: var(--gold-light); }
+@keyframes pulse { 50% { opacity: .35; } }
+
+.nav-links a.nav-cta { color: #111; background: var(--gold); padding: 6px 14px; border-bottom: 0; }
+.nav-links a.nav-cta:hover { background: var(--gold-light); color: #111; }
+
+/* scroll reveal */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.office-card.reveal.in:hover { transform: translateY(-3px); }
+
+/* roster avatars */
+.player-list li { display: flex; align-items: center; gap: 10px; }
+.avatar { flex: 0 0 30px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%;
+    background: var(--gold-tint-1); border: 1px solid var(--gold); color: var(--gold);
+    font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+.team-card { transition: transform .25s, border-color .25s; }
+.team-card:hover { transform: translateY(-3px); border-color: var(--gold-border); }
+[hidden] { display: none !important; }
+
+/* join steps */
+.steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 24px 0 30px; }
+.steps li { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--gold-border);
+    padding: 14px 18px; text-align: left; max-width: 300px; }
+.steps b { font-family: var(--font-display); font-size: 28px; color: var(--gold); line-height: 1; }
+.recruitment .btn + .btn { margin-left: 10px; }
+
+/* live / win colours */
+.hero::after { animation: spin 40s linear infinite; }
+@keyframes spin { to { transform: rotate(405deg); } }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .hero::after, .is-live .nm-label { animation: none; } }
+
+
+/* ---------- PLAYER CARDS (gold theme) ---------- */
+.player-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.player-card { background: var(--dark-2); border: 1px solid var(--line); overflow: hidden;
+    transition: transform .25s, border-color .25s; }
+.player-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+.pc-art { aspect-ratio: 1 / 0.8; display: grid; place-items: center;
+    background: radial-gradient(circle at center, #3a2e18 0%, var(--gold-tint-1) 45%, var(--black) 100%); }
+.pc-art span { font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 5vw, 60px);
+    letter-spacing: 2px; color: var(--gold); opacity: .45; }
+.pc-info { padding: 18px 16px 20px; background: var(--panel); }
+.pc-info h4 { font-family: var(--font-display); font-size: 19px; line-height: 1.2; letter-spacing: 1px;
+    color: var(--gold-light); overflow-wrap: anywhere; }
+.pc-info p { margin-top: 6px; color: var(--gray); font-family: var(--font-display); font-size: 14px; letter-spacing: 1.5px; }
+.pc-tag { display: inline-block; margin-top: 12px; padding: 4px 10px; background: var(--gold-tint-1);
+    border: 1px solid var(--gold-border); color: var(--gold); font-family: var(--font-display);
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+@media (max-width: 1000px) { .player-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 760px) { .player-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } .pc-info h4 { font-size: 16px; } }
+
+/* ---------- NAV FIT (no wrapping) ---------- */
+.nav-links a, .brand-name { white-space: nowrap; }
+.brand-name small { white-space: nowrap; }
+@media (min-width: 961px) and (max-width: 1280px) {
+    nav { gap: 14px; }
+    .brand { gap: 10px; flex-shrink: 0; }
+    .brand-name { font-size: 20px; letter-spacing: 1.5px; }
+    .brand-name small { font-size: 8px; letter-spacing: 2px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 13px; letter-spacing: 1px; }
+    .nav-links a.nav-cta { padding: 6px 10px; }
+}
