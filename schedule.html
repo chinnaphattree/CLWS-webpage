@@ -12,9 +12,12 @@
 
 <link rel="stylesheet" href="CLWS.css">
 <link rel="stylesheet" href="schedule.css">
+<script>document.documentElement.classList.add("js");</script>
 </head>
 
 <body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <div class="topbar">
     <div class="container">
@@ -52,16 +55,16 @@
 <main>
 <section class="page-hero">
     <div class="container">
-        <a href="CLWS.html" class="back-link">← BACK TO MAIN SITE</a>
-        <div class="eyebrow">OFFICIAL FIXTURES &amp; RESULTS</div>
-        <h1>RACE <span>SCHEDULE</span></h1>
-        <p>ตารางการแข่งขัน ผลการแข่งขัน และ Scrim ของ CLUWS ESPORTS</p>
+        <a href="CLWS.html" class="back-link hero-in" style="--d:100ms">← BACK TO MAIN SITE</a>
+        <div class="eyebrow hero-in" style="--d:220ms">OFFICIAL FIXTURES &amp; RESULTS</div>
+        <h1 class="hero-in" style="--d:340ms">RACE <span>SCHEDULE</span></h1>
+        <p class="hero-in" style="--d:480ms">ตารางการแข่งขัน ผลการแข่งขัน และ Scrim ของ CLUWS ESPORTS</p>
     </div>
 </section>
 
 <section class="schedule-section">
     <div class="container">
-        <div class="section-heading">
+        <div class="section-heading rv">
             <small>MATCH CENTER</small>
             <h2>UPCOMING &amp; RESULTS</h2>
             <p>อัปเดตตารางการแข่งขันล่าสุดของทุกทีม (เวลาประเทศไทย)</p>
@@ -69,19 +72,19 @@
         </div>
 
         <div class="schedule-stats">
-            <div class="stat"><strong id="statUpcoming">0</strong><small>UPCOMING</small></div>
-            <div class="stat"><strong id="statLive">0</strong><small>LIVE NOW</small></div>
-            <div class="stat"><strong id="statDone">0</strong><small>COMPLETED</small></div>
+            <div class="stat rv" style="--d:0ms"><strong id="statUpcoming">0</strong><small>UPCOMING</small></div>
+            <div class="stat rv" style="--d:120ms"><strong id="statLive">0</strong><small>LIVE NOW</small></div>
+            <div class="stat rv" style="--d:240ms"><strong id="statDone">0</strong><small>COMPLETED</small></div>
         </div>
 
-        <div class="roster-tools" role="group" aria-label="Filter matches">
+        <div class="roster-tools rv" role="group" aria-label="Filter matches">
             <button class="active" data-filter="all" aria-pressed="true">ALL MATCHES</button>
             <button data-filter="upcoming" aria-pressed="false">UPCOMING</button>
             <button data-filter="live" aria-pressed="false">LIVE</button>
             <button data-filter="done" aria-pressed="false">COMPLETED</button>
         </div>
 
-        <div class="table-wrap">
+        <div class="table-wrap rv" id="tableWrap">
             <table class="schedule-table">
                 <thead>
                     <tr>
@@ -105,11 +108,11 @@
 
 <section class="recruitment">
     <div class="container">
-        <div class="eyebrow">WANT A SCRIM OR TRYOUT?</div>
-        <h2>CONTACT THE OFFICE</h2>
-        <p>ต้องการนัดซ้อมหรือเข้าร่วมการแข่งขัน ติดต่อสำนักงานผ่านช่องทางอย่างเป็นทางการ</p>
-        <a href="CLWS.html#contact" class="btn">CONTACT OFFICE</a>
-        <a href="CLWS.html" class="btn btn-outline">BACK TO MAIN SITE</a>
+        <div class="eyebrow rv">WANT A SCRIM OR TRYOUT?</div>
+        <h2 class="rv" style="--d:100ms">CONTACT THE OFFICE</h2>
+        <p class="rv" style="--d:200ms">ต้องการนัดซ้อมหรือเข้าร่วมการแข่งขัน ติดต่อสำนักงานผ่านช่องทางอย่างเป็นทางการ</p>
+        <a href="CLWS.html#contact" class="btn rv" style="--d:300ms">CONTACT OFFICE</a>
+        <a href="CLWS.html" class="btn btn-outline rv" style="--d:400ms">BACK TO MAIN SITE</a>
     </div>
 </section>
 </main>
@@ -164,6 +167,7 @@ const matches = SCHEDULE.map(m => {
 matches.forEach(m => {
     const tr = el("tr");
     tr.dataset.status = m.status;
+    tr.classList.add("rv");
 
     const dateTd = el("td", "date-cell");
     const day = m.when.getDate();
@@ -198,10 +202,6 @@ matches.forEach(m => {
     body.insertBefore(tr, noResults);
 });
 
-document.getElementById("statUpcoming").textContent = matches.filter(m => m.status === "upcoming").length;
-document.getElementById("statLive").textContent = matches.filter(m => m.status === "live").length;
-document.getElementById("statDone").textContent = matches.filter(m => m.status === "done").length;
-
 const filterButtons = document.querySelectorAll(".roster-tools button");
 function applyFilter(filter) {
     let visible = 0;
@@ -212,6 +212,7 @@ function applyFilter(filter) {
     });
     noResultsText.textContent = matches.length === 0 ? "ยังไม่มีตารางการแข่งขัน — โปรดติดตามประกาศเร็ว ๆ นี้" : "ไม่พบรายการแข่งขันในหมวดนี้";
     noResults.hidden = visible !== 0;
+    replayRows();
 }
 
 filterButtons.forEach(button => {
@@ -222,6 +223,88 @@ filterButtons.forEach(button => {
         applyFilter(button.dataset.filter);
     });
 });
+
+
+/* ================= MOTION ================= */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// stats count up
+const statTargets = {
+    statUpcoming: matches.filter(m => m.status === "upcoming").length,
+    statLive: matches.filter(m => m.status === "live").length,
+    statDone: matches.filter(m => m.status === "done").length
+};
+function countUp(node, target) {
+    if (reduceMotion || target === 0) { node.textContent = target; return; }
+    const dur = 1100, start = performance.now();
+    (function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        node.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+        if (t < 1) requestAnimationFrame(tick);
+    })(start);
+}
+Object.keys(statTargets).forEach(id => { document.getElementById(id).textContent = 0; });
+
+// scroll reveal (float up)
+function revealAll() { document.querySelectorAll(".rv").forEach(n => n.classList.add("in")); Object.keys(statTargets).forEach(id => countUp(document.getElementById(id), statTargets[id])); }
+const statsBox = document.querySelector(".schedule-stats");
+let counted = false;
+
+if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealAll();
+} else {
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const node = entry.target;
+            node.classList.add("in");
+            io.unobserve(node);
+            if (node.closest(".schedule-stats") && !counted) {
+                counted = true;
+                Object.keys(statTargets).forEach(id => countUp(document.getElementById(id), statTargets[id]));
+            }
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    document.querySelectorAll(".rv").forEach(node => {
+        // table rows stagger by their position in the list
+        if (node.tagName === "TR") {
+            const idx = Array.from(body.querySelectorAll("tr[data-status]")).indexOf(node);
+            node.style.setProperty("--d", (idx % 8) * 90 + "ms");
+        }
+        io.observe(node);
+    });
+}
+
+// replay the float-up on the visible rows whenever a filter is chosen
+let replayReady = false;
+function replayRows() {
+    if (!replayReady) { replayReady = true; return; }   // skip the initial call
+    if (reduceMotion) return;
+    const rows = Array.from(body.querySelectorAll("tr[data-status]")).filter(r => !r.hidden);
+    rows.forEach(r => { r.style.transitionDelay = "0ms"; r.classList.remove("in"); });
+    void body.offsetHeight;
+    rows.forEach((r, i) => {
+        r.style.transitionDelay = i * 90 + "ms";
+        requestAnimationFrame(() => r.classList.add("in"));
+    });
+}
+
+// scroll progress bar
+const bar = document.getElementById("scrollProgress");
+function updateBar() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
+}
+window.addEventListener("scroll", updateBar, { passive: true });
+updateBar();
+
+// table light sweep when it enters view
+const tableWrap = document.getElementById("tableWrap");
+if (!reduceMotion && "IntersectionObserver" in window) {
+    const tio = new IntersectionObserver(([e]) => { if (e.isIntersecting) { tableWrap.classList.add("in"); tio.disconnect(); } }, { threshold: 0.15 });
+    tio.observe(tableWrap);
+}
 
 applyFilter("all");
 document.getElementById("year").textContent = new Date().getFullYear();

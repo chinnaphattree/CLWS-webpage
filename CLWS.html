@@ -21,6 +21,8 @@
 
 <body>
 
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <div class="topbar">
     <div class="container">
         <span>THAILAND ESPORTS ORGANIZATION</span>
@@ -607,6 +609,25 @@ fb.forEach(b=>b.addEventListener("click",()=>{fb.forEach(i=>{i.classList.remove(
 b.classList.add("active");b.setAttribute("aria-pressed","true");
 tc.forEach(c=>c.hidden=!(b.dataset.filter==="all"||c.dataset.team===b.dataset.filter));}));
 </script>
+<script>
+// MOTION: stagger delays, scroll progress bar, header shadow
+(function(){
+    document.documentElement.classList.add("js-motion");
+    // stagger cards that sit side by side inside the same container
+    document.querySelectorAll(".reveal").forEach(function(el){
+        var sibs=Array.from(el.parentElement.children).filter(function(c){return c.classList.contains("reveal")});
+        el.style.setProperty("--d",(sibs.indexOf(el)%6)*110+"ms");
+    });
+    var bar=document.getElementById("scrollProgress"),hd=document.querySelector("header");
+    function onScroll(){
+        var max=document.documentElement.scrollHeight-innerHeight;
+        bar.style.transform="scaleX("+(max>0?scrollY/max:0)+")";
+        if(hd) hd.classList.toggle("scrolled",scrollY>10);
+    }
+    addEventListener("scroll",onScroll,{passive:true});onScroll();
+})();
+</script>
+
 <script>
 // safety net: if the reveal animation script fails, never leave sections invisible
 window.addEventListener("load",()=>setTimeout(()=>document.querySelectorAll(".reveal:not(.in)").forEach(e=>e.classList.add("in")),1500));

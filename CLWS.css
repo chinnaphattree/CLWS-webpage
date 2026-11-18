@@ -970,3 +970,136 @@ footer p {
     .nav-links a { font-size: 13px; letter-spacing: 1px; }
     .nav-links a.nav-cta { padding: 6px 10px; }
 }
+
+
+/* ==========================================================
+   MOTION LAYER (v3) — float-up reveal, hero entrance,
+   hover effects. Appended last so it overrides earlier rules.
+   Reveal still uses the existing .reveal / .in classes, so
+   site.js keeps working unchanged.
+   ========================================================== */
+:root { --ease-out: cubic-bezier(.2, .7, .2, 1); }
+
+/* ---------- scroll progress bar ---------- */
+.scroll-progress {
+    position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 999;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    box-shadow: 0 0 12px rgba(201, 164, 94, .7);
+    transform: scaleX(0); transform-origin: left; pointer-events: none;
+}
+
+/* ---------- float-up reveal (animation, so hover transforms stay snappy) ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(46px);
+    transition: transform .3s var(--ease-out), border-color .3s, box-shadow .3s, background .3s;
+}
+.reveal.in {
+    opacity: 1;
+    transform: none;
+    animation: floatUp .9s var(--ease-out) var(--d, 0ms) backwards;
+}
+@keyframes floatUp {
+    from { opacity: 0; transform: translateY(46px); filter: blur(6px); }
+    to   { opacity: 1; transform: none;             filter: blur(0); }
+}
+
+/* timeline items slide in from the side instead */
+.timeline-item.reveal { transform: translateX(-34px); }
+.timeline-item.reveal.in { animation-name: slideIn; }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-34px); filter: blur(4px); }
+    to   { opacity: 1; transform: none;              filter: blur(0); }
+}
+
+/* section headings: gold line draws itself (only when the heading itself reveals) */
+.section-heading.reveal .gold-line { transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease-out) .25s; }
+.section-heading.reveal.in .gold-line { transform: scaleX(1); }
+
+/* ---------- hero: one orchestrated entrance ---------- */
+.hero-content > * {
+    opacity: 0;
+    animation: heroUp .95s var(--ease-out) forwards;
+}
+.hero-content > :nth-child(1) { animation-delay: .10s; }
+.hero-content > :nth-child(2) { animation-delay: .25s; }
+.hero-content > :nth-child(3) { animation-delay: .45s; }
+.hero-content > :nth-child(4) { animation-delay: .60s; }
+.hero-content > :nth-child(5) { animation-delay: .80s; }
+@keyframes heroUp {
+    from { opacity: 0; transform: translateY(38px); filter: blur(6px); }
+    to   { opacity: 1; transform: none;             filter: blur(0); }
+}
+
+/* gold shimmer across ESPORTS */
+.hero h1 span {
+    background: linear-gradient(100deg, var(--gold) 30%, #fff3cf 50%, var(--gold) 70%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4.5s ease-in-out 1.4s infinite;
+}
+@keyframes shimmer {
+    0%   { background-position: 120% 0; }
+    60%, 100% { background-position: -120% 0; }
+}
+
+/* next-match card glows gently */
+.next-match { animation: heroUp .95s var(--ease-out) .8s forwards, cardGlow 3.5s ease-in-out 2s infinite; }
+.next-match.is-live { animation: heroUp .95s var(--ease-out) .8s forwards, liveGlow 1.8s ease-in-out 2s infinite; }
+@keyframes cardGlow { 50% { box-shadow: 0 0 28px rgba(201, 164, 94, .18); } }
+@keyframes liveGlow { 50% { box-shadow: 0 0 30px rgba(229, 72, 77, .35); } }
+
+/* ---------- header gets a shadow once you scroll ---------- */
+header { transition: box-shadow .3s, background .3s; }
+header.scrolled { box-shadow: 0 8px 24px rgba(0, 0, 0, .55); }
+
+/* nav underline slides in */
+.nav-links a:not(.nav-cta) { position: relative; }
+.nav-links a:not(.nav-cta)::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease-out);
+}
+.nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); }
+
+/* ---------- hover motion ---------- */
+.btn { transition: transform .3s var(--ease-out), box-shadow .3s, background .25s, color .25s, border-color .25s; }
+.btn:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(201, 164, 94, .25); }
+.btn:active { transform: scale(.96); }
+
+.card.reveal.in:hover,
+.comp-card.reveal.in:hover,
+.contact-card.reveal.in:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(0, 0, 0, .5); border-color: var(--gold-border); }
+
+.stat { transition: transform .35s var(--ease-out), border-color .35s, box-shadow .35s; }
+.stat:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 12px 26px rgba(0, 0, 0, .45); }
+
+.player-card { transition: transform .35s var(--ease-out), border-color .3s, box-shadow .35s; }
+.player-card:hover { transform: translateY(-6px); box-shadow: 0 16px 30px rgba(0, 0, 0, .5); }
+
+.avatar { transition: transform .3s cubic-bezier(.3, 1.6, .5, 1), background .25s, color .25s; }
+.player-list li:hover .avatar { transform: scale(1.18) rotate(-6deg); background: var(--gold); color: #111; }
+
+/* roster filter: cards pop back in */
+.player-card:not([hidden]) { animation: cardIn .5s var(--ease-out) backwards; }
+@keyframes cardIn { from { opacity: 0; transform: scale(.94) translateY(14px); } to { opacity: 1; transform: none; } }
+
+.roster-tools button { transition: transform .25s, background .25s, color .25s, border-color .25s; }
+.roster-tools button:hover { transform: translateY(-3px); }
+.roster-tools button:active { transform: scale(.94); }
+
+/* timeline dot pulses once the item is revealed */
+.timeline-item.in::before { animation: dotPulse 2.6s ease-in-out 1s infinite; }
+@keyframes dotPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 164, 94, .55); } 50% { box-shadow: 0 0 0 9px rgba(201, 164, 94, 0); } }
+
+/* ---------- respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal.in, .hero-content > *, .next-match, .next-match.is-live,
+    .player-card:not([hidden]), .timeline-item.in::before {
+        opacity: 1; transform: none; filter: none; animation: none !important;
+    }
+    .hero h1 span { animation: none; background: none; -webkit-text-fill-color: var(--gold); }
+    .section-heading.reveal .gold-line { transform: none; }
+    .scroll-progress { display: none; }
+}
